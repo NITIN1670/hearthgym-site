@@ -1,0 +1,49 @@
+name: Deploy Site
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+env:
+  # Resource name you type when creating the App Service (Azure Portal > Create > Web App),
+  # NOT the random-suffixed *.azurewebsites.net hostname. Update this if you name it differently.
+  AZURE_WEBAPP_NAME: hearthgym-web
+  NODE_VERSION: '22.x'
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+
+      - name: Install
+        run: npm install --no-audit --no-fund
+
+      - name: Build static export
+        run: npm run build
+
+      - name: Assemble self-contained deploy package
+        # App Service just runs `node server.js`; express is the only runtime
+        # dependency it needs, installed fresh here so nothing has to build on Azure's side.
+        run: |
+          mkdir -p deploy
+          cp server.js deploy/server.js
+          cp server-package.json deploy/package.json
+          cp -r out deploy/out
+          npm install --prefix deploy --omit=dev
+
+      - name: Deploy to Azure Web App
+        uses: azure/webapps-deploy@v3
+        with:
+          app-name: ${{ env.AZURE_WEBAPP_NAME }}
+          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+          package: deploy
+          # NOTE: startup-command can't be set here with publish-profile auth. Set it once on
+          # the App Service instead — Azure Cloud Shell:
+          #   az webapp config set -g <resource-group> -n hearthgym-web --startup-file "node server.js"
