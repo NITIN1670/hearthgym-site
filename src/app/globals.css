@@ -1,0 +1,38 @@
+@import "tailwindcss";
+
+:root {
+  --background: #fdf8f3;
+  --foreground: #2b1710;
+
+  /* Warm "hearth" palette — ties the visual identity to the product name. */
+  --hearth-50: #fdf8f3;
+  --hearth-100: #fbeee0;
+  --hearth-200: #f3d9bf;
+  --hearth-500: #e2662e;
+  --hearth-600: #c2542a;
+  --hearth-700: #9a3e24;
+  --hearth-800: #6b3226;
+  --hearth-950: #2b1710;
+  --muted: #8a6f5f;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-hearth-50: var(--hearth-50);
+  --color-hearth-100: var(--hearth-100);
+  --color-hearth-200: var(--hearth-200);
+  --color-hearth-500: var(--hearth-500);
+  --color-hearth-600: var(--hearth-600);
+  --color-hearth-700: var(--hearth-700);
+  --color-hearth-800: var(--hearth-800);
+  --color-hearth-950: var(--hearth-950);
+  --color-muted: var(--muted);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
