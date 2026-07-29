@@ -8,7 +8,7 @@ on:
 env:
   # Resource name you type when creating the App Service (Azure Portal > Create > Web App),
   # NOT the random-suffixed *.azurewebsites.net hostname. Update this if you name it differently.
-  AZURE_WEBAPP_NAME: hearthgym-web
+  AZURE_WEBAPP_NAME: hearthgym
   NODE_VERSION: '22.x'
 
 jobs:
