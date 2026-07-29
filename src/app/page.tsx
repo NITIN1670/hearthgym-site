@@ -1,5 +1,4 @@
-// TODO: replace with the real business WhatsApp number (country code + number, no plus/spaces) before launch.
-const WHATSAPP_NUMBER = "911234567890";
+const WHATSAPP_NUMBER = "918376991734";
 const WHATSAPP_MESSAGE = encodeURIComponent(
   "Hi! I'd like to book a free demo of HearthGym for my gym."
 );
@@ -333,11 +332,7 @@ export default function Home() {
                     </li>
                   ))}
                 </ul>
-                <WhatsAppButton
-                  className={`mt-8 w-full ${
-                    plan.highlighted ? "bg-white text-hearth-950 hover:bg-hearth-100" : ""
-                  }`}
-                >
+                <WhatsAppButton className="mt-8 w-full">
                   Book a Free Demo
                 </WhatsAppButton>
               </div>
@@ -355,7 +350,7 @@ export default function Home() {
               A 15-minute WhatsApp call, in Hindi or English &mdash; no pressure,
               no card required.
             </p>
-            <WhatsAppButton className="mt-8 bg-white text-hearth-950 hover:bg-hearth-100">
+            <WhatsAppButton className="mt-8">
               Book a Free Demo
             </WhatsAppButton>
           </div>
