@@ -16,10 +16,7 @@ const TITLE = "HearthGym — Software that keeps your gym's fire burning.";
 const DESCRIPTION =
   "Member management, WhatsApp renewal reminders, a lead CRM, and AI-generated Indian diet charts — all in one platform built for Indian gyms.";
 
-// TODO: replace with the real azurewebsites.net hostname (or the custom domain, once
-// connected) — needed so the og:image URL resolves to something WhatsApp/Facebook can
-// actually fetch, instead of localhost.
-const SITE_URL = "https://hearthgym-web.azurewebsites.net";
+const SITE_URL = "https://hearthgym.com";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
