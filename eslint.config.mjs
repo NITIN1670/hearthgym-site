@@ -12,6 +12,9 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Plain CommonJS script run directly via `node` in the deploy package —
+    // not part of the linted Next.js app source, and require() is intentional there.
+    "server.js",
   ]),
 ]);
 
