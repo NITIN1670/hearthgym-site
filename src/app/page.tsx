@@ -329,9 +329,13 @@ export default function Home() {
     <>
       <header className="sticky top-0 z-20 border-b border-hearth-100 bg-hearth-50/90 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-          <span className="text-lg font-bold tracking-tight text-hearth-950">
+          <a
+            href="/"
+            aria-label="HearthGym — back to home"
+            className="rounded text-lg font-bold tracking-tight text-hearth-950 transition hover:text-hearth-600"
+          >
             HearthGym
-          </span>
+          </a>
           <nav className="hidden items-center gap-8 text-sm font-medium text-hearth-800 md:flex">
             <a href="#features" className="hover:text-hearth-600">Features</a>
             <a href="#how-it-works" className="hover:text-hearth-600">How it works</a>
