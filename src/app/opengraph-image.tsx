@@ -18,10 +18,15 @@ export default function Image() {
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          background: "#2B1710",
+          background: "#241a16",
           padding: "0 80px",
         }}
       >
+        <svg width="108" height="108" viewBox="0 0 48 48">
+            <rect width="48" height="48" rx="12" fill="#201914"/>
+            <path d="M25 6c1 9 11 12 11 22a12 12 0 0 1-24 0c0-5 2-9 6-13 0 4 1 6 3 7 3-4 5-9 4-16Z" fill="#ff8755"/>
+            <path d="M19 26v8m10-8v8m-10-4h10" fill="none" stroke="#201914" strokeWidth="2.5" strokeLinecap="round"/>
+          </svg>
         <div
           style={{
             fontSize: 96,
@@ -41,7 +46,7 @@ export default function Image() {
             lineHeight: 1.3,
           }}
         >
-          Software that keeps your gym&apos;s fire burning.
+          Run your gym from one place.
         </div>
       </div>
     ),
