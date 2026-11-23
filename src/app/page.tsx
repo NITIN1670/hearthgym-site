@@ -90,11 +90,6 @@ const SHOWCASE: Showcase[] = [
 
 const MORE_FEATURES = [
   {
-    id: "gst-invoicing",
-    title: "GST invoices and receipts",
-    desc: "Issue numbered GST invoices or simple receipts, download PDFs and export the invoice register.",
-  },
-  {
     id: "lead-crm",
     title: "Lead and enquiry CRM",
     desc: "Log walk-ins, assign follow-ups, record conversations and convert leads into members.",
@@ -103,11 +98,6 @@ const MORE_FEATURES = [
     id: "visit-rewards",
     title: "Visit rewards",
     desc: "Set an attendance target and award bonus membership days when members hit it.",
-  },
-  {
-    id: "member-import",
-    title: "CSV and Excel member import",
-    desc: "Bring in your existing member list, preview rows and catch duplicates before importing.",
   },
 ];
 
@@ -148,6 +138,53 @@ const PLANS = [
     desc: "Unlimited members per gym",
     features: ["Everything in Growth", "AI diet chart", "Priority support"],
     highlighted: false,
+  },
+];
+
+
+const WORKFLOWS = [
+  {
+    id: "member-import",
+    title: "Bring your member list with you",
+    description: "Upload a CSV or Excel file, match its columns and review rows before importing. HearthGym flags duplicate phone numbers and rows that need attention.",
+    previewTitle: "Member import preview",
+    columns: ["Name", "Status"],
+    rows: [
+      ["Aarav Sharma", "Ready"],
+      ["Diya Patel", "Already in gym"],
+      ["Kabir Singh", "Check phone"],
+    ],
+  },
+  {
+    id: "gst-invoicing",
+    title: "Find invoices when you need them",
+    description: "Issue numbered GST invoices or simple receipts. Download individual PDFs or export the invoice register as a CSV.",
+    previewTitle: "Invoice register",
+    columns: ["Invoice", "Total", "Status"],
+    rows: [
+      ["HG/26-27/001", "₹1,500", "Active"],
+      ["HG/26-27/002", "₹2,400", "Active"],
+      ["HG/26-27/003", "₹1,500", "Cancelled"],
+    ],
+  },
+];
+
+const FAQ = [
+  {
+    question: "What can I import from my existing member list?",
+    answer: "Upload a CSV or .xlsx file with each member’s name and phone number. Joined date and date of birth are optional. Set up existing plans, subscriptions and balances separately.",
+  },
+  {
+    question: "How do cash and UPI payments work?",
+    answer: "Your front desk records each cash or UPI payment after receiving it. The payment is linked to the member and subscription. With GST configured, the gym can issue GST invoices. Otherwise it can issue simple numbered receipts.",
+  },
+  {
+    question: "How do members get the app?",
+    answer: "Share your gym’s member link. Members can open it in a mobile browser and install it from there. They can see membership status, visits, measurements and payment history.",
+  },
+  {
+    question: "Will HearthGym send WhatsApp renewal reminders?",
+    answer: "The dashboard shows upcoming membership expiries so staff can follow up. Ask during the demo about the current availability of automated messaging.",
   },
 ];
 
@@ -310,6 +347,7 @@ export default function Home() {
             <a href="#features" className="hover:text-hearth-600">Features</a>
             <a href="#how-it-works" className="hover:text-hearth-600">How it works</a>
             <a href="#pricing" className="hover:text-hearth-600">Pricing</a>
+            <a href="#faq" className="hover:text-hearth-600">FAQ</a>
           </nav>
           <WhatsAppButton className="min-h-11 px-3 py-2 text-sm sm:px-5">
             Book a free demo
@@ -323,9 +361,9 @@ export default function Home() {
           <div className="mx-auto grid max-w-7xl items-center gap-10 px-5 py-14 sm:px-8 md:py-20 lg:grid-cols-[0.9fr_1.1fr] lg:gap-14 lg:py-24">
             <div>
               <p className="text-sm font-semibold text-[#ffab83]">Gym management software for India</p>
-              <h1 className="mt-4 max-w-xl text-4xl font-bold leading-[1.08] tracking-tight sm:text-5xl lg:text-6xl">Run your gym from one place.</h1>
+              <h1 className="mt-4 max-w-xl text-4xl font-bold leading-[1.08] tracking-tight sm:text-5xl lg:text-6xl">Know who’s due to renew and what your gym collected.</h1>
               <p className="mt-5 max-w-lg text-lg leading-relaxed text-[#e3cec0]">
-                Manage memberships, check-ins, leads and GST invoices from one workspace. See who is due to renew and what your gym collected this month.
+                Track memberships, check-ins and cash or UPI payments in one workspace. Import your member list and issue GST invoices as you go.
               </p>
               <div className="mt-8 flex flex-wrap items-center gap-4">
                 <WhatsAppButton className="px-6 py-3 text-base">Book a free demo</WhatsAppButton>
@@ -345,6 +383,50 @@ export default function Home() {
             <a href="#member-import" className="font-semibold underline-offset-4 hover:underline">Import your member list</a>
             <a href="#gst-invoicing" className="font-semibold underline-offset-4 hover:underline">Issue GST invoices</a>
             <a href="#lead-crm" className="font-semibold underline-offset-4 hover:underline">Track enquiries and follow-ups</a>
+          </div>
+        </section>
+
+
+        <section aria-labelledby="workflow-heading" className="bg-hearth-50 py-14 md:py-20">
+          <div className="mx-auto max-w-6xl px-5 sm:px-8">
+            <h2 id="workflow-heading" className="text-3xl font-bold tracking-tight text-hearth-950 md:text-4xl">
+              From your existing member list to your first invoice
+            </h2>
+            <div className="mt-8 grid gap-5 md:grid-cols-2">
+              {WORKFLOWS.map((workflow) => (
+                <article key={workflow.id} id={workflow.id} className="flex min-w-0 scroll-mt-24 flex-col rounded-2xl border border-hearth-200 bg-white p-5 sm:p-7">
+                  <h3 className="text-xl font-bold text-hearth-950">{workflow.title}</h3>
+                  <p className="mt-2 leading-relaxed text-muted">{workflow.description}</p>
+                  <figure className="mt-auto pt-5">
+                    <div className="overflow-hidden rounded-xl border border-hearth-200">
+                      <table className="w-full text-left text-sm">
+                        <caption className="bg-hearth-100 px-3 py-3 text-left font-semibold text-hearth-950">
+                          {workflow.previewTitle}
+                        </caption>
+                        <thead className="bg-hearth-50 text-muted">
+                          <tr>
+                            {workflow.columns.map((column) => (
+                              <th key={column} scope="col" className="px-3 py-2 font-medium">{column}</th>
+                            ))}
+                          </tr>
+                        </thead>
+                        <tbody className="divide-y divide-hearth-100">
+                          {workflow.rows.map(([name, ...values]) => (
+                            <tr key={name}>
+                              <th scope="row" className="px-3 py-2.5 font-semibold">{name}</th>
+                              {values.map((value, index) => (
+                                <td key={workflow.columns[index + 1]} className="px-3 py-2.5 text-muted">{value}</td>
+                              ))}
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                    <figcaption className="mt-2 text-sm text-muted">Illustrative preview with sample data</figcaption>
+                  </figure>
+                </article>
+              ))}
+            </div>
           </div>
         </section>
 
@@ -472,6 +554,25 @@ export default function Home() {
                 </WhatsAppButton>
               </div>
             ))}
+          </div>
+        </section>
+
+
+        <section id="faq" aria-labelledby="faq-heading" className="scroll-mt-24 border-t border-hearth-200 bg-white py-14 md:py-20">
+          <div className="mx-auto grid max-w-6xl gap-7 px-5 sm:px-8 md:grid-cols-[1fr_1.65fr] md:gap-12">
+            <h2 id="faq-heading" className="text-3xl font-bold tracking-tight text-hearth-950">
+              Questions before you book?
+            </h2>
+            <div className="divide-y divide-hearth-200 border-y border-hearth-200">
+              {FAQ.map(({ question, answer }) => (
+                <details key={question} className="py-4">
+                  <summary className="cursor-pointer rounded-sm font-semibold text-hearth-950 marker:text-hearth-700 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-hearth-700">
+                    {question}
+                  </summary>
+                  <p className="mt-3 leading-relaxed text-muted">{answer}</p>
+                </details>
+              ))}
+            </div>
           </div>
         </section>
 
