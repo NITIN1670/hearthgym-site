@@ -46,7 +46,7 @@ export default function Image() {
             lineHeight: 1.3,
           }}
         >
-          Run your gym from one place.
+          Know who’s due to renew and what your gym collected.
         </div>
       </div>
     ),
