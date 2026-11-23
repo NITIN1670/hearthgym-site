@@ -43,10 +43,10 @@ const SHOWCASE: Showcase[] = [
   {
     eyebrow: "The member app",
     title: "Your gym, in your members' pockets.",
-    desc: "Every member gets an installable app — no Play Store, no App Store. They see their plan, their expiry date, their streak and their payments, and they get nudged before the membership lapses.",
+    desc: "Members can open the gym’s web app from a link and install it on their phone. They can check their membership, view payments and track their visits.",
     points: [
-      "Installs from a link in seconds",
-      "Renewal nudge before expiry",
+      "Installable from a link",
+      "Membership status and expiry date",
       "Visits, streak and payment history",
     ],
     shot: {
@@ -58,30 +58,13 @@ const SHOWCASE: Showcase[] = [
     },
   },
   {
-    eyebrow: "Dashboard & reports",
-    title: "Open it in the morning, know where the month stands.",
-    desc: "Active members, check-ins, renewals due this week and revenue for the month — on one screen, updating as your front desk works.",
-    points: [
-      "Check-ins and revenue over the last 7 days",
-      "Expiring-soon and new-this-month lists",
-      "Monthly reports, exportable to PDF",
-    ],
-    shot: {
-      src: "/screenshots/dashboard.webp",
-      alt: "HearthGym owner dashboard with active member count, revenue for the month, and check-in and revenue charts for the last 7 days.",
-      width: 1280,
-      height: 900,
-      frame: "browser",
-    },
-  },
-  {
     eyebrow: "Payments",
-    title: "Every payment recorded, every history kept.",
-    desc: "Record a payment against a member and a plan in a few taps — cash or UPI — and the subscription moves with it. Nothing has to live in a notebook.",
+    title: "Record cash and UPI payments at the desk.",
+    desc: "Record payments against memberships and look up past transactions from the gym workspace.",
     points: [
       "Cash and UPI",
       "Payment tied to the member and the plan",
-      "Full history, always searchable",
+      "Payment history by member",
     ],
     shot: {
       src: "/screenshots/payments.webp",
@@ -93,8 +76,8 @@ const SHOWCASE: Showcase[] = [
   },
   {
     eyebrow: "AI diet chart",
-    title: "A 7-day Indian meal plan, built around each member.",
-    desc: "Generated from the member's goal, diet preference and measurements — vegetarian, Jain, eggetarian or non-veg, in food people actually cook at home.",
+    title: "Indian meal plans based on a member’s goals.",
+    desc: "Generate an Indian meal plan using the member’s health profile, goals and dietary preferences.",
     points: [
       "Personalised to goal and diet preference",
       "Regenerate whenever their details change",
@@ -104,41 +87,34 @@ const SHOWCASE: Showcase[] = [
   },
 ];
 
+
 const MORE_FEATURES = [
   {
-    title: "WhatsApp & SMS reminders",
-    desc: "Every expiring member gets an automatic nudge, so renewals stop depending on memory.",
+    id: "gst-invoicing",
+    title: "GST invoices and receipts",
+    desc: "Issue numbered GST invoices or simple receipts, download PDFs and export the invoice register.",
   },
   {
-    title: "Lead & enquiry CRM",
-    desc: "Track walk-ins and follow-ups so an enquiry never quietly goes cold.",
+    id: "lead-crm",
+    title: "Lead and enquiry CRM",
+    desc: "Log walk-ins, assign follow-ups, record conversations and convert leads into members.",
   },
   {
-    title: "Gamification",
-    desc: "Members earn bonus days for showing up — consistency becomes something they chase.",
+    id: "visit-rewards",
+    title: "Visit rewards",
+    desc: "Set an attendance target and award bonus membership days when members hit it.",
   },
   {
-    title: "Progress tracking",
-    desc: "Weight and measurements charted over time, visible to the member themselves.",
+    id: "member-import",
+    title: "CSV and Excel member import",
+    desc: "Bring in your existing member list, preview rows and catch duplicates before importing.",
   },
 ];
 
 const STEPS = [
-  {
-    n: "1",
-    title: "Enroll your members",
-    desc: "Name, phone, photo, plan — done in under a minute per member.",
-  },
-  {
-    n: "2",
-    title: "They get the app instantly",
-    desc: "A PWA link, no install friction. They set their goal and diet preference themselves.",
-  },
-  {
-    n: "3",
-    title: "Renewals run on autopilot",
-    desc: "WhatsApp reminders and the lead CRM keep revenue from slipping through the cracks.",
-  },
+  { n: "1", title: "Set up your gym", desc: "Create your owner account and add your first membership plan." },
+  { n: "2", title: "Bring your members over", desc: "Import your member list or add members one at a time." },
+  { n: "3", title: "Start running the front desk", desc: "Check members in, record payments and see which memberships are due to renew." },
 ];
 
 const PLANS = [
@@ -160,8 +136,7 @@ const PLANS = [
     features: [
       "Everything in Starter",
       "Installable member app (PWA)",
-      "WhatsApp & SMS reminders",
-      "Gamification & custom branding",
+      "Visit rewards and custom branding",
     ],
     highlighted: true,
   },
@@ -170,7 +145,7 @@ const PLANS = [
     price: "₹1,999",
     period: "/month",
     annualNote: "or ₹19,999/year",
-    desc: "Unlimited members, multi-branch",
+    desc: "Unlimited members per gym",
     features: ["Everything in Growth", "AI diet chart", "Priority support"],
     highlighted: false,
   },
@@ -190,7 +165,7 @@ function WhatsAppButton({
       href={WHATSAPP_LINK}
       target="_blank"
       rel="noopener noreferrer"
-      className={`inline-flex items-center justify-center rounded-full bg-hearth-500 px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-hearth-600 ${className}`}
+      className={`inline-flex items-center justify-center rounded-full bg-[#ff8755] px-6 py-3 text-sm font-semibold text-hearth-950 shadow-sm transition hover:bg-[#ffad88] ${className}`}
     >
       {children}
     </a>
@@ -257,12 +232,6 @@ function DietPlanCard() {
         General nutrition guidance, not medical advice.
       </p>
 
-      <button
-        type="button"
-        className="mt-3 w-full rounded-lg border border-hearth-200 py-1.5 text-xs font-semibold text-hearth-800"
-      >
-        Regenerate
-      </button>
     </div>
   );
 }
@@ -289,7 +258,7 @@ function ShowcaseRow({ row, flip }: { row: Showcase; flip: boolean }) {
                 alt={row.shot.alt}
                 width={row.shot.width}
                 height={row.shot.height}
-                className="block h-auto w-full"
+                className="block h-auto w-[120%] max-w-none -translate-x-1/6"
               />
             </BrowserFrame>
           )
@@ -328,12 +297,13 @@ export default function Home() {
   return (
     <>
       <header className="sticky top-0 z-20 border-b border-hearth-100 bg-hearth-50/90 backdrop-blur">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
+        <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-3 sm:px-8">
           <a
             href="/"
             aria-label="HearthGym — back to home"
-            className="rounded text-lg font-bold tracking-tight text-hearth-950 transition hover:text-hearth-600"
+            className="flex shrink-0 items-center gap-2 rounded text-lg font-extrabold tracking-tight text-hearth-950 transition hover:text-hearth-600"
           >
+            <Image src="/hearthgym-mark.svg" alt="" width={40} height={40} unoptimized />
             HearthGym
           </a>
           <nav className="hidden items-center gap-8 text-sm font-medium text-hearth-800 md:flex">
@@ -341,54 +311,54 @@ export default function Home() {
             <a href="#how-it-works" className="hover:text-hearth-600">How it works</a>
             <a href="#pricing" className="hover:text-hearth-600">Pricing</a>
           </nav>
-          <WhatsAppButton className="px-4 py-2 text-xs md:px-6 md:py-3 md:text-sm">
-            Book a Free Demo
+          <WhatsAppButton className="min-h-11 px-3 py-2 text-sm sm:px-5">
+            Book a free demo
           </WhatsAppButton>
         </div>
       </header>
 
       <main>
-        {/* Hero */}
-        <section className="mx-auto max-w-6xl px-6 pt-16 pb-20 text-center md:pt-24 md:pb-28">
-          <span className="inline-block rounded-full bg-hearth-100 px-4 py-1.5 text-xs font-semibold uppercase tracking-wide text-hearth-700">
-            Built for Indian gyms
-          </span>
-          <h1 className="mx-auto mt-6 max-w-3xl text-4xl font-bold tracking-tight text-hearth-950 md:text-6xl">
-            Software that keeps your gym&apos;s fire burning.
-          </h1>
-          <p className="mx-auto mt-6 max-w-xl text-lg text-muted">
-            Member management, WhatsApp renewal reminders, a lead CRM, and
-            AI-generated Indian diet charts &mdash; all in one platform, so no
-            member and no enquiry quietly slips away.
-          </p>
-          <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
-            <WhatsAppButton className="px-8 py-4 text-base">
-              Book a Free Demo
-            </WhatsAppButton>
-            <a
-              href="#pricing"
-              className="text-sm font-semibold text-hearth-800 underline underline-offset-4 hover:text-hearth-600"
-            >
-              See pricing &rarr;
-            </a>
+
+        <section className="overflow-hidden bg-hearth-950 text-hearth-50">
+          <div className="mx-auto grid max-w-7xl items-center gap-10 px-5 py-14 sm:px-8 md:py-20 lg:grid-cols-[0.9fr_1.1fr] lg:gap-14 lg:py-24">
+            <div>
+              <p className="text-sm font-semibold text-[#ffab83]">Gym management software for India</p>
+              <h1 className="mt-4 max-w-xl text-4xl font-bold leading-[1.08] tracking-tight sm:text-5xl lg:text-6xl">Run your gym from one place.</h1>
+              <p className="mt-5 max-w-lg text-lg leading-relaxed text-[#e3cec0]">
+                Manage memberships, check-ins, leads and GST invoices from one workspace. See who is due to renew and what your gym collected this month.
+              </p>
+              <div className="mt-8 flex flex-wrap items-center gap-4">
+                <WhatsAppButton className="px-6 py-3 text-base">Book a free demo</WhatsAppButton>
+                <a href="#pricing" className="inline-flex min-h-11 items-center px-2 text-sm font-semibold underline-offset-4 hover:underline">View pricing</a>
+              </div>
+            </div>
+            <figure className="min-w-0">
+              <BrowserFrame>
+                <Image src="/screenshots/dashboard.webp" alt="HearthGym owner dashboard showing membership, check-ins and revenue" width={1280} height={900} preload className="block h-auto w-[120%] max-w-none -translate-x-1/6" />
+              </BrowserFrame>
+              <figcaption className="mt-3 text-sm text-[#e3cec0]">HearthGym owner dashboard · Monthly and custom reports available</figcaption>
+            </figure>
+          </div>
+        </section>
+        <section aria-label="Gym setup and billing" className="border-b border-hearth-200 bg-hearth-100">
+          <div className="mx-auto grid max-w-6xl gap-4 px-5 py-5 sm:grid-cols-3 sm:gap-6 sm:px-8">
+            <a href="#member-import" className="font-semibold underline-offset-4 hover:underline">Import your member list</a>
+            <a href="#gst-invoicing" className="font-semibold underline-offset-4 hover:underline">Issue GST invoices</a>
+            <a href="#lead-crm" className="font-semibold underline-offset-4 hover:underline">Track enquiries and follow-ups</a>
           </div>
         </section>
 
         {/* Features */}
         <section
           id="features"
-          className="border-y border-hearth-100 bg-white py-20 md:py-24"
+          className="scroll-mt-24 border-y border-hearth-100 bg-white py-20 md:py-24"
         >
           <div className="mx-auto max-w-6xl px-6">
-            <p className="text-center text-sm font-semibold uppercase tracking-wide text-hearth-600">
-              From the actual product
-            </p>
             <h2 className="mx-auto mt-2 max-w-2xl text-center text-3xl font-bold tracking-tight text-hearth-950 md:text-4xl">
-              Everything a gym owner actually needs
+              From first enquiry to membership renewal
             </h2>
             <p className="mx-auto mt-4 max-w-lg text-center text-muted">
-              Real screens, not mockups &mdash; no feature list padding, this is
-              what&apos;s built and working today.
+              See how staff manage members, record payments and track attendance in HearthGym.
             </p>
 
             <div className="mt-16 space-y-20 md:mt-20 md:space-y-28">
@@ -400,11 +370,12 @@ export default function Home() {
             <div className="mt-20 grid grid-cols-1 gap-6 border-t border-hearth-100 pt-16 sm:grid-cols-2 lg:grid-cols-4">
               {MORE_FEATURES.map((f) => (
                 <div
-                  key={f.title}
-                  className="rounded-2xl border border-hearth-100 bg-hearth-50 p-6"
+                  key={f.id}
+                  id={f.id}
+                  className="scroll-mt-28 rounded-2xl border border-hearth-200 bg-hearth-50 p-6"
                 >
                   <h3 className="font-semibold text-hearth-950">{f.title}</h3>
-                  <p className="mt-2 text-sm text-muted">{f.desc}</p>
+                  <p className="mt-2 leading-relaxed text-muted">{f.desc}</p>
                 </div>
               ))}
             </div>
@@ -412,7 +383,7 @@ export default function Home() {
         </section>
 
         {/* How it works */}
-        <section id="how-it-works" className="py-20">
+        <section id="how-it-works" className="scroll-mt-24 py-20">
           <div className="mx-auto max-w-5xl px-6">
             <h2 className="text-center text-3xl font-bold text-hearth-950">
               Get started in three steps
@@ -434,13 +405,12 @@ export default function Home() {
         </section>
 
         {/* Pricing */}
-        <section id="pricing" className="mx-auto max-w-6xl px-6 py-20">
+        <section id="pricing" className="scroll-mt-24 mx-auto max-w-6xl px-6 py-20">
           <h2 className="text-center text-3xl font-bold text-hearth-950">
             Simple, per-gym pricing
           </h2>
           <p className="mx-auto mt-3 max-w-lg text-center text-muted">
-            One flat monthly price per gym location. No per-member fees, no
-            surprises.
+            Each plan is priced per gym location, with monthly and annual billing options.
           </p>
           <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-3">
             {PLANS.map((plan) => (
@@ -452,11 +422,6 @@ export default function Home() {
                     : "border-hearth-100 bg-white"
                 }`}
               >
-                {plan.highlighted && (
-                  <span className="rounded-full bg-hearth-500 px-3 py-1 text-xs font-semibold uppercase tracking-wide">
-                    Most popular
-                  </span>
-                )}
                 <h3
                   className={`mt-4 text-xl font-bold ${
                     plan.highlighted ? "text-white" : "text-hearth-950"
@@ -503,7 +468,7 @@ export default function Home() {
                   ))}
                 </ul>
                 <WhatsAppButton className="mt-8 w-full">
-                  Book a Free Demo
+                  Book a free demo
                 </WhatsAppButton>
               </div>
             ))}
@@ -521,7 +486,7 @@ export default function Home() {
               no card required.
             </p>
             <WhatsAppButton className="mt-8">
-              Book a Free Demo
+              Book a free demo
             </WhatsAppButton>
           </div>
         </section>
@@ -529,8 +494,9 @@ export default function Home() {
 
       <footer className="border-t border-hearth-100 bg-hearth-50 py-10">
         <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-6 text-sm text-muted md:flex-row">
-          <span className="font-semibold text-hearth-950">HearthGym</span>
-          <span>&copy; {new Date().getFullYear()} HearthGym. All rights reserved.</span>
+          <a href="/" className="flex items-center gap-2 font-bold text-hearth-950"><Image src="/hearthgym-mark.svg" alt="" width={40} height={40} unoptimized /> HearthGym</a>
+          <span>HearthGym is operated by HS Enterprises.</span>
+          <a href="https://app.hearthgym.com/login" className="font-semibold text-hearth-950 underline-offset-4 hover:underline">Staff sign in</a>
         </div>
       </footer>
     </>

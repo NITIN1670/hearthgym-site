@@ -12,9 +12,9 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const TITLE = "HearthGym — Software that keeps your gym's fire burning.";
+const TITLE = "HearthGym — Gym Management Software for India";
 const DESCRIPTION =
-  "Member management, WhatsApp renewal reminders, a lead CRM, and AI-generated Indian diet charts — all in one platform built for Indian gyms.";
+  "Manage memberships, attendance, leads and GST invoices with HearthGym. Import your member list and run your gym from one workspace.";
 
 const SITE_URL = "https://hearthgym.com";
 
