@@ -51,9 +51,9 @@ const SHOWCASE: Showcase[] = [
     ],
     shot: {
       src: "/screenshots/member-home.webp",
-      alt: "The member app on a phone, showing a renewal reminder, membership plan with expiry date, visit streak and payment history.",
-      width: 400,
-      height: 860,
+      alt: "HearthGym member app with demo data showing a renewal reminder, membership expiry, visit streak and payment history.",
+      width: 371,
+      height: 830,
       frame: "phone",
     },
   },
